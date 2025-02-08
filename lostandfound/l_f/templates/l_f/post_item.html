@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,11 +144,16 @@
         .submit-btn:hover {
             background: #0097a7;
         }
+        .logo {
+    height: 80px;
+    width: 100px;
+    display: block;
+}
     </style>
 </head>
 <body>
     <nav>
-        <a href="#"><strong>Lost & Found</strong></a>
+        <a href="{% url 'home' %}"> <img src="{% static 'l_f/logo2.jpeg' %}" alt="Lost & Found" class="logo"></a>
         <ul id="nav-links">
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'find_item' %}">Find Item</a></li>
