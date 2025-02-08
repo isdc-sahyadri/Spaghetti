@@ -27,7 +27,7 @@ def post_lost_item(request):
         )
         lost_item.save()
 
-        return redirect('item_list') 
+        return redirect('find_item') 
 
     return render(request, "l_f/post_item.html")
 
