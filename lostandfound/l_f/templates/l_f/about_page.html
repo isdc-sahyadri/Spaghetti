@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost and Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: #00bcd4;
+        }
+        .hero {
+            margin-top: 120px;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero button {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .about {
+            margin-top: 50px;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .menu-container {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background: black;
+                top: 60px;
+                right: 0;
+                width: 50%;
+                padding: 20px;
+            }
+            .menu-container {
+                display: block;
+            }
+            .active {
+                display: flex;
+            }
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .team-section {
+        padding: 50px 20px;
+        margin: 50px auto;
+        max-width: 1200px;
+    }
+
+    .team-title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: #00bcd4;
+    }
+
+    .team-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 30px;
+    }
+
+    .team-member {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+        transform: translateY(-5px);
+    }
+
+    .member-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 3px solid #00bcd4;
+    }
+
+    .member-name {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .member-role {
+        color: #00bcd4;
+        margin-bottom: 20px;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #00bcd4;
+    }
+
+    .spotify-player {
+        margin-top: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    </style>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <nav>
+        <a href="#"><strong>Lost & Found</strong></a>
+        <ul id="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'find_item' %}">Find Item</a></li>
+            <li><a href="{% url 'post_item' %}">Post Item</a></li>
+            <li><a href="{% url 'about_page' %}">About</a></li>
+        </ul> 
+        <button class="menu-container" onclick="toggleMenu()">☰</button>
+    </nav>
+    <div class="about">
+        <div class="team-section">
+            <h2 class="team-title">Meet Our Team</h2>
+            <div class="team-container">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <img src="image1.jpeg" alt="Member 1" class="member-image">
+                    <h3 class="member-name">Nihal Ashraf</h3>
+                    <p class="member-role">Student</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://leetcode.com/u/Nihal_Ashraf" target="_blank"><i class="fas fa-code"></i></a>
+                        <a href="https://github.com/FadedMarioGold" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="spotify-player">
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3sNVsP50132BTNlImLx70i?utm_source=generator" width="100%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+    
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <img src="img2.jpeg" alt="Member 2" class="member-image">
+                    <h3 class="member-name">Mohammed Muzammil</h3>
+                    <p class="member-role">Student</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/mohammad-muzammil-b5129532a/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://leetcode.com/u/muzammil07/" target="_blank"><i class="fas fa-code"></i></a>
+                        <a href="https://github.com/mmuzammil2003" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/mu.zamm.il/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="spotify-player">
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5TRPicyLGbAF2LGBFbHGvO?utm_source=generator" width="100%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Font Awesome for icons (place in head section) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80 },
+                size: { value: 3 },
+                move: { enable: true, speed: 1 },
+                opacity: { value: 0.5 },
+                shape: { type: "circle" },
+                line_linked: { enable: true, distance: 150 }
+            }
+        });
+    </script>
+</body>
+</html>
