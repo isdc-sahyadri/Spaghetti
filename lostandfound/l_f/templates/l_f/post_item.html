@@ -214,6 +214,17 @@ footer {
     }
 }
 
+.trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease-out;
+    opacity: 0.8;
+}
 
     </style>
 </head>
@@ -279,6 +290,57 @@ footer {
             var nav = document.getElementById('nav-links');
             nav.classList.toggle('active');
         }
+        const matrixCanvas = document.createElement("canvas");
+document.body.appendChild(matrixCanvas);
+const matrixCtx = matrixCanvas.getContext("2d");
+matrixCanvas.style.position = "fixed";
+matrixCanvas.style.top = "0";
+matrixCanvas.style.left = "0";
+matrixCanvas.style.zIndex = "-1";
+matrixCanvas.width = window.innerWidth;
+matrixCanvas.height = window.innerHeight;
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+const fontSize = 16;
+const columns = matrixCanvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(0);
+
+function drawMatrix() {
+    matrixCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+    matrixCtx.fillStyle = "#00ff00";
+    matrixCtx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+    requestAnimationFrame(drawMatrix);
+}
+drawMatrix();
+
+document.addEventListener("mousemove", function(e) {
+    let trail = document.createElement("div");
+    trail.className = "trail";
+    document.body.appendChild(trail);
+    trail.style.left = `${e.clientX}px`;
+    trail.style.top = `${e.clientY}px`;
+    setTimeout(() => trail.remove(), 500);
+});
+
+document.addEventListener("mousemove", function(e) {
+    let trail = document.createElement("div");
+    trail.className = "trail";
+    document.body.appendChild(trail);
+    trail.style.left = `${e.clientX}px`;
+    trail.style.top = `${e.clientY}px`;
+    setTimeout(() => trail.remove(), 500);
+});
+
+
     </script>
 </body>
 </html>
