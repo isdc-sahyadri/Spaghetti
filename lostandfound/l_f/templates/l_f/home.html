@@ -162,9 +162,73 @@
             }
         }
         #typed-text {
-    
-    min-height: 50px; 
+         min-height: 50px;
+     }
+     footer {
+    background: linear-gradient(180deg, rgba(20, 20, 20, 1), rgba(10, 10, 10, 1));
+    color: #e0e0e0;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0px -2px 10px rgba(255, 255, 255, 0.1);
 }
+
+.footer-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.footer-content p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-links a:hover {
+    color: #ff6f61;
+    transform: translateY(-2px);
+}
+
+.social-links a::before {
+    content: "➤";
+    font-size: 1rem;
+    color: #ff6f61;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover::before {
+    color: #00bcd4;
+}
+
+@media (max-width: 600px) {
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -190,6 +254,17 @@
         <h1>About Us</h1>
         <p>🧑‍🦯We help you find lost items and reconnect with your belongings.😍</p>
     </section>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Lost and Found | All Rights Reserved</p>
+            <div class="social-links">
+                <a href="https://github.com/isdc-sahyadri/Spaghetti" target="_blank">🔗 GitHub</a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">🔗 LinkedIn</a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">📧 Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
     <script>
         function toggleMenu() {
             var nav = document.getElementById('nav-links');
