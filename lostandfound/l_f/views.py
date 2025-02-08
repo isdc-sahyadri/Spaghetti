@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import LostItem
 
 def home(request):
@@ -34,3 +34,9 @@ def post_lost_item(request):
 def find_item(request):
     items = LostItem.objects.all().order_by('-created_at')
     return render(request, "l_f/find_item.html", {"items": items})
+
+def delete_item(request, item_id):
+    if request.method == "POST":  
+        item = get_object_or_404(LostItem, id=item_id)
+        item.delete()  
+        return redirect('find_item') 

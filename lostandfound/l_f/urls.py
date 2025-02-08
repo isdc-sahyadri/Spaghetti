@@ -6,4 +6,5 @@ urlpatterns = [
     path("find/", views.find_item, name="find_item"), 
     path("post/", views.post_lost_item, name="post_item"),
     path("about/", views.about_page, name="about_page"),
+    path("delete/<int:item_id>/", views.delete_item, name="delete_item"),
 ]
