@@ -112,16 +112,16 @@
     <nav>
         <a href="#"><strong>Lost & Found</strong></a>
         <ul id="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#find">Find Item</a></li>
-            <li><a href="#post">Post Item</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'find_item' %}">Find Item</a></li>
+            <li><a href="{% url 'post_item' %}">Post Item</a></li>
+            <li><a href="{% url 'about_page' %}">About</a></li>
         </ul>
         <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>
     <section class="hero">
         <h1>Lost and Found</h1>
-        <button onclick="alert('Find item clicked!')">Find Item</button>
+        <button onclick="window.location.href='{% url 'find_item' %}'">Find Item</button>
     </section>
     <section class="about" id="about">
         <h1>About Us</h1>
