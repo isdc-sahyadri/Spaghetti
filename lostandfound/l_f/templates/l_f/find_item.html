@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Lost Items</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 600px; margin: auto; padding: 20px; }
+        .item { border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .item img { max-width: 100px; display: block; margin: auto; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#"><strong>Lost & Found</strong></a>
+        <ul id="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'find_item' %}">Find Item</a></li>
+            <li><a href="{% url 'post_item' %}">Post Item</a></li>
+            <li><a href="{% url 'about_page' %}">About</a></li>
+        </ul>
+        <button class="menu-container" onclick="toggleMenu()">☰</button>
+    </nav>
+    <div class="container">
+        <h1>Find Lost Items</h1>
+        {% if items %}
+            {% for item in items %}
+                <div class="item">
+                    <h3>{{ item.title }}</h3>
+                    <p><strong>Name:</strong> {{ item.name }}</p>
+                    <p><strong>Email:</strong> {{ item.email }}</p>
+                    <p><strong>Phone:</strong> {{ item.phone }}</p>
+                    <p><strong>Description:</strong> {{ item.description }}</p>
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="Lost Item">
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No lost items found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

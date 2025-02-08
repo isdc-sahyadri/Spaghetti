@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Lost Item</title>
+    <title>Post a Lost Item</title>
     <style>
         * {
             margin: 0;
@@ -15,8 +15,6 @@
             background-color: #121212;
             color: white;
             text-align: center;
-            overflow: hidden;
-            position: relative;
         }
         nav {
             display: flex;
@@ -34,6 +32,9 @@
             list-style: none;
             display: flex;
             gap: 20px;
+        }
+        nav ul li {
+            display: inline;
         }
         nav ul li a {
             text-decoration: none;
@@ -78,13 +79,9 @@
             text-align: center;
             backdrop-filter: blur(15px);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease-in-out;
             margin: 15vh auto;
             position: relative;
             z-index: 10;
-        }
-        .form-container:hover {
-            transform: scale(1.05);
         }
         h1 {
             margin-bottom: 20px;
@@ -94,6 +91,7 @@
         .input-container {
             position: relative;
             margin-bottom: 20px;
+            text-align: left;
         }
         .input-container input, .input-container textarea {
             width: 100%;
@@ -129,6 +127,7 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             transition: 0.3s;
+            width: 100%;
         }
         .submit-btn {
             background: #00bcd4;
@@ -144,107 +143,61 @@
         .submit-btn:hover {
             background: #0097a7;
         }
-        
-        /* Background Animation */
-        #background {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .bubble {
-            position: absolute;
-            background: rgba(0, 188, 212, 0.2);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-        }
     </style>
 </head>
 <body>
     <nav>
         <a href="#"><strong>Lost & Found</strong></a>
         <ul id="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#find">Find Item</a></li>
-            <li><a href="post_item.html">Post Item</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'find_item' %}">Find Item</a></li>
+            <li><a href="{% url 'post_item' %}">Post Item</a></li>
+            <li><a href="{% url 'about_page' %}">About</a></li>
         </ul>
         <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>
-    <div id="background"></div>
+
     <div class="form-container">
         <h1>Post a Lost Item</h1>
-        <form>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
             <div class="input-container">
-                <input type="text" required placeholder=" " id="name">
+                <input type="text" name="name" id="name" required>
                 <label for="name">Name</label>
             </div>
+
             <div class="input-container">
-                <input type="email" required placeholder=" " id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="email">Email</label>
             </div>
+
             <div class="input-container">
-                <input type="tel" required placeholder=" " id="phone">
+                <input type="tel" name="phone" id="phone" required>
                 <label for="phone">Phone</label>
             </div>
+
             <div class="input-container">
-                <input type="text" required placeholder=" " id="title">
+                <input type="text" name="title" id="title" required>
                 <label for="title">Title</label>
             </div>
+
             <div class="input-container">
-                <textarea required placeholder=" " id="description"></textarea>
+                <textarea name="description" id="description" required></textarea>
                 <label for="description">Description</label>
             </div>
-            <input type="file" accept="image/*">
+
+            <input type="file" name="image" accept="image/*">
+
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
+
     <script>
         function toggleMenu() {
             var nav = document.getElementById('nav-links');
             nav.classList.toggle('active');
         }
-
-        function createBubbles() {
-            const background = document.getElementById('background');
-            for (let i = 0; i < 20; i++) {
-                let bubble = document.createElement('div');
-                bubble.classList.add('bubble');
-                bubble.style.width = ${Math.random() * 50 + 20}px;
-                bubble.style.height = bubble.style.width;
-                bubble.style.left = ${Math.random() * 100}vw;
-                bubble.style.animationDuration = ${Math.random() * 5 + 3}s;
-                background.appendChild(bubble);
-            }
-        }
-        createBubbles();
-
-        // Additional JavaScript for form validation and interactivity
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Form submitted successfully!');
-        });
-
-        document.querySelectorAll('.input-container input, .input-container textarea').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            input.addEventListener('blur', function() {
-                if (this.value === '') {
-                    this.parentElement.classList.remove('focused');
-                }
-            });
-        });
     </script>
 </body>
 </html>
