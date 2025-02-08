@@ -4,42 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Lost Items</title>
+
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .container { max-width: 600px; margin: auto; padding: 20px; }
-        .item { border-bottom: 1px solid #ddd; padding: 10px 0; }
-        .item img { max-width: 100px; display: block; margin: auto; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00bcd4;
+        }
+
+      
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+        }
+
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .no-items {
+            text-align: center;
+            color: #888;
+            font-size: 18px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+
+   
     <nav>
-        <a href="#"><strong>Lost & Found</strong></a>
-        <ul id="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'find_item' %}">Find Item</a></li>
-            <li><a href="{% url 'post_item' %}">Post Item</a></li>
-            <li><a href="{% url 'about_page' %}">About</a></li>
+        <a href="#" class="text-white fw-bold fs-4">Lost & Found</a>
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'find_item' %}">Find Item</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'post_item' %}">Post Item</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'about_page' %}">About</a></li>
         </ul>
-        <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>
+
+   
     <div class="container">
-        <h1>Find Lost Items</h1>
-        {% if items %}
-            {% for item in items %}
-                <div class="item">
-                    <h3>{{ item.title }}</h3>
-                    <p><strong>Name:</strong> {{ item.name }}</p>
-                    <p><strong>Email:</strong> {{ item.email }}</p>
-                    <p><strong>Phone:</strong> {{ item.phone }}</p>
-                    <p><strong>Description:</strong> {{ item.description }}</p>
-                    {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="Lost Item">
-                    {% endif %}
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No lost items found.</p>
-        {% endif %}
+        <h1 class="text-center mb-4">Find Lost Items</h1>
+        
+        <div class="row">
+            {% if items %}
+                {% for item in items %}
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <div class="card shadow-sm">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}">
+                            {% else %}
+                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="No Image">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <p class="card-text">{{ item.description }}</p>
+                                <p><strong>Contact:</strong> {{ item.name }} | {{ item.email }} | {{ item.phone }}</p>
+                                <a href="/find/details/{{ item.id }}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-items">No lost items found.</p>
+            {% endif %}
+        </div>
     </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 </html>
