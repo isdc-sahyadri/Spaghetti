@@ -96,7 +96,7 @@
             margin-bottom: 20px;
             text-align: left;
         }
-        .input-container input, .input-container textarea {
+        .input-container input, .input-container textarea,.input-container select {
             width: 100%;
             padding: 10px;
             border: none;
@@ -106,6 +106,7 @@
             border-radius: 5px;
             outline: none;
             transition: 0.3s;
+           
         }
         .input-container label {
             position: absolute;
@@ -116,7 +117,8 @@
             transition: 0.3s;
         }
         .input-container input:focus + label, 
-        .input-container textarea:focus + label {
+        .input-container textarea:focus + label,.input-container select:focus + label, 
+        .input-container select:valid + label {
             top: -10px;
             left: 10px;
             background: #121212;
@@ -258,6 +260,13 @@ footer {
             <div class="input-container">
                 <textarea name="description" id="description" required></textarea>
                 <label for="description">Description</label>
+            </div>
+            <div class="input-container">
+               
+                <select name="status" id="status" required>
+                    <option value="lost">Lost It</option>
+                    <option value="found">Found It</option>
+                </select>
             </div>
 
             <input type="file" name="image" accept="image/*">
