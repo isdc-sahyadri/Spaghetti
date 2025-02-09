@@ -10,3 +10,5 @@ Through this event, you'll get a hands-on experience of how hackathons work. Whi
 
 So gear up, bring your ideas to life, and show us what you’ve got! 🚀🔥
 
+
+Gdrive_link:https://drive.google.com/drive/folders/1wO4AyX1_aVfPVQl-nWfpThxG5zGHlfvU?usp=drive_link
