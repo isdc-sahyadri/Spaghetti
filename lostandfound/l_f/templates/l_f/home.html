@@ -153,8 +153,8 @@
         .typed-cursor {
             font-size: 3rem;
             color: #00bcd4;
-            animation:  infinite;
-        }
+            animation: blink 1s infinite;
+        }        
         @keyframes blink {
             0%, 100% {
                 opacity: 1;
@@ -193,7 +193,7 @@
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .social-links a {
@@ -284,39 +284,106 @@
     background-color: #e6b800;
     transform: scale(1.1);
 }
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+.user-dropdown button {
+    background: #00bcd4;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+.user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #333;
+    color: white;
+    min-width: 200px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.user-dropdown-content p {
+    padding: 10px;
+    margin: 0;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+.user-dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    background: #d9534f;
+}
+.user-dropdown-content a:hover {
+    background: #c9302c;
+}
+.user-dropdown:hover .user-dropdown-content {
+    display: block;
+}
 
 
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 </head>
 <body>
     <div id="particles-js"></div>
     <nav>
-        <a href="{% url 'home' %}"> <img src="{% static 'l_f/logo2.jpeg' %}" alt="Lost & Found" class="logo"></a>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'l_f/logo2.jpeg' %}" alt="Lost & Found" class="logo">
+        </a>
         <ul id="nav-links">
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'find_item' %}">Find Item</a></li>
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
-        {% else %}
+    
+            {% if user.is_authenticated %}
+            <li class="user-dropdown">
+                <button>{{ user.username|first|upper }}</button>
+                <div class="user-dropdown-content">
+                    <p><strong>Username:</strong> {{ user.username }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Member Since:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </li>
+            {% else %}
             <li><a href="{% url 'signup' %}" class="signup-btn">Sign Up</a></li>
             <li><a href="{% url 'login' %}" class="login-btn">Log In</a></li>
-        {% endif %}
-        </ul> 
-        <button class="menu-container" onclick="toggleMenu()">☰</button>
+            {% endif %}
+        </ul>
     </nav>
+    
     <section class="hero">
-        <h1 id="typed-text"></h1>
+        <h1 id="typed-text">Find What You Lost!</h1>
         <button onclick="window.location.href='{% url 'find_item' %}'">Find Item</button>
     </section>
+    
     <section class="about" id="about">
         <h1>About Us</h1>
-        <p>🧑‍🦯We help you find lost items and reconnect with your belongings.😍</p>
+        <p>🧑‍🦯 We help you find lost items and reconnect with your belongings.😍</p>
     </section>
+    
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById("nav-links");
+            navLinks.style.display = navLinks.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Lost and Found | All Rights Reserved</p>
@@ -353,18 +420,21 @@
             backDelay: 1500,
             loop: true,
             showCursor: true,
-            cursorChar: '',
+            cursorChar: '|',
             autoInsertCss: true
         });
-
-        document.addEventListener("mousemove", function(e) {
-    let trail = document.createElement("div");
-    trail.className = "trail";
-    document.body.appendChild(trail);
-    trail.style.left = `${e.clientX}px`;
-    trail.style.top = `${e.clientY}px`;
-    setTimeout(() => trail.remove(), 500);
-});
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuContainer = document.querySelector('.menu-container');
+            const navList = document.querySelector('nav ul');
+    
+            menuContainer.addEventListener('click', function() {
+                navList.classList.toggle('active');
+            });
+        });
+    </script>
+    
 </body>
 </html>
