@@ -37,6 +37,7 @@
             list-style: none;
             display: flex;
             gap: 20px;
+            align-items: center;
         }
         nav ul li a {
             text-decoration: none;
@@ -287,6 +288,9 @@
 .user-dropdown {
     position: relative;
     display: inline-block;
+   
+    
+    
 }
 .user-dropdown button {
     background: #00bcd4;
@@ -295,7 +299,8 @@
     padding: 10px 15px;
     cursor: pointer;
     font-size: 1.2rem;
-    border-radius: 5px;
+    border-radius: 20px;
+   
 }
 .user-dropdown-content {
     display: none;
@@ -328,6 +333,17 @@
 }
 .user-dropdown:hover .user-dropdown-content {
     display: block;
+}
+.trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease-out;
+    opacity: 0.8;
 }
 
 
@@ -420,7 +436,7 @@
             backDelay: 1500,
             loop: true,
             showCursor: true,
-            cursorChar: '|',
+            cursorChar: '',
             autoInsertCss: true
         });
     </script>
@@ -434,6 +450,15 @@
                 navList.classList.toggle('active');
             });
         });
+
+        document.addEventListener("mousemove", function(e) {
+    let trail = document.createElement("div");
+    trail.className = "trail";
+    document.body.appendChild(trail);
+    trail.style.left = `${e.clientX}px`;
+    trail.style.top = `${e.clientY}px`;
+    setTimeout(() => trail.remove(), 500);
+});
     </script>
     
 </body>
