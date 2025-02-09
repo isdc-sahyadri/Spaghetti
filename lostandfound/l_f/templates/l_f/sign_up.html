@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'l_f/logo2.jpeg' %}">
     <title>Lost and Found</title>
     <style>
         * {
@@ -19,6 +20,7 @@
             text-align: center;
             position: relative;
             overflow-x: hidden;
+            padding-top: 100px;
         }
         nav {
             display: flex;
@@ -220,6 +222,12 @@
         .login-link:hover {
             text-decoration: underline;
         }
+        strong {
+            font-weight: 700;
+            color: tomato;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
 
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -236,7 +244,7 @@
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
         </ul> 
-        <button class="menu-container" onclick="toggleMenu()">☰</button>
+       
     </nav>
     <div class="signup-container">
         <h1>Sign Up</h1>
@@ -259,7 +267,7 @@
                 <label for="confirm_password">Confirm Password</label>
             </div>
             <button type="submit" class="submit-btn">Sign Up</button>
-            <a href="{% url 'login' %}" class="login-link">Already signed up? Log in here</a>
+            <a href="{% url 'login' %}" class="login-link">Already signed up? <strong>Login in here</strong></a>
         </form>
     </div>
 
