@@ -14,6 +14,7 @@ class LostItem(models.Model):
         blank=True, 
         related_name="lost_items"
     )  
+    name = models.CharField(max_length=100, default="Anonymous") 
     title = models.CharField(max_length=200)
     description = models.TextField()
     email = models.EmailField()

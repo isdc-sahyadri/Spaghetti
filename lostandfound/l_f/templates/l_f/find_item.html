@@ -230,8 +230,8 @@ footer {
                                         <span class="badge bg-success">Found</span>
                                     {% endif %}
                                 </h5>
-                                <p class="card-text">{{ item.description }}</p>
-                                <p><strong>Contact:</strong> {{ item.name }} | {{ item.email }} | {{ item.phone }}</p>
+                                
+                                <p><strong>Contact:</strong>{{ item.email }} | {{ item.phone }}</p>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal{{ item.id }}">
                                     View Details
                                 </button>
@@ -272,11 +272,11 @@ footer {
                                     </a>
 
                                     <!-- Delete Button -->
-                                    <form action="{% url 'delete_item' item.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    <form id="delete-form-{{ item.id }}" action="{% url 'delete_item' item.id %}" method="POST" 
+                                        onsubmit="return confirmDelete(event, {{ item.id }}, '{{ item.user.username }}');">
+                                         {% csrf_token %}
+                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -299,6 +299,18 @@ footer {
             </div>
         </div>
     </footer>
+    <script>
+        function confirmDelete(event, itemId, owner) {
+            var currentUser = "{{ user.username }}";  // Get the logged-in user
+        
+            if (currentUser !== owner) {
+                event.preventDefault();  // Stop form submission
+                alert("Delete is only possible for the owner of this post.");
+                return false;
+            }
+            return confirm("Are you sure you want to delete this item?");
+        }
+        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

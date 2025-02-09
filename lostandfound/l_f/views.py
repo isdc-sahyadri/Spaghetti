@@ -44,6 +44,7 @@ def logout_view(request):
 @login_required(login_url="login")
 def post_lost_item(request):
     if request.method == "POST":
+        name = request.POST.get("name")  
         title = request.POST.get("title")
         description = request.POST.get("description")
         email = request.POST.get("email")
