@@ -162,6 +162,26 @@ footer {
     background-color: #e6b800;
     transform: scale(1.1);
 }
+.user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #17a2b8;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        .user-icon:hover {
+            background-color: #138496;
+            transform: scale(1.1);
+        }
 
 
     </style>
@@ -179,9 +199,9 @@ footer {
     
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#userInfoModal">
-                    {{ user.username }} <i class="fas fa-user"></i>
-                </button>
+                <div class="user-icon" data-bs-toggle="modal" data-bs-target="#userInfoModal">
+                    {{ user.username|first }}
+                </div>
             </li>
             {% endif %}
         </ul>
