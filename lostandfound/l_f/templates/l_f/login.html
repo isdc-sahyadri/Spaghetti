@@ -4,13 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-=======
     <link rel="icon" type="image/png" href="{% static 'l_f/logo2.jpeg' %}">
->>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     <title>Login - Lost and Found</title>
     <style>
-        * {
+        {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -51,10 +48,6 @@
             color: #00bcd4;
             transform: scale(1.1);
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
         #particles-js {
             position: fixed;
             width: 100%;
@@ -137,10 +130,7 @@
             margin-bottom: 15px;
             font-size: 0.9rem;
         }
-<<<<<<< HEAD
-    </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-=======
         .signup-link {
             margin-top: 15px;
             color: white;
@@ -223,7 +213,6 @@ strong {
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
->>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
 </head>
 <body>
     <div id="particles-js"></div>
@@ -237,17 +226,11 @@ strong {
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
         </ul> 
-<<<<<<< HEAD
         <button class="menu-container" onclick="toggleMenu()">☰</button>
-=======
-        
->>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     </nav>
 
     <div class="signup-container">
         <h1>Login</h1>
-
-        <!-- Show error messages -->
         {% if messages %}
             <div class="error-messages">
                 {% for message in messages %}
@@ -269,11 +252,8 @@ strong {
             </div>
            
             <button type="submit" class="submit-btn">Login</button>
-<<<<<<< HEAD
-            <a href="{% url 'signup' %}" class="signup-link">Don't have an account? Sign up here</a>
-=======
             <a href="{% url 'signup' %}" class="signup-link">Don't have an account?  <strong>Sign-up here</strong></a>
->>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
+
         </form>
     </div>
 
@@ -293,8 +273,6 @@ strong {
             var nav = document.getElementById('nav-links');
             nav.classList.toggle('active');
         }
-<<<<<<< HEAD
-=======
         particlesJS("particles-js", {
             particles: {
                 number: { value: 80 },
@@ -305,7 +283,6 @@ strong {
                 line_linked: { enable: true, distance: 150 }
             }
         });
->>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     </script>
 </body>
 </html>

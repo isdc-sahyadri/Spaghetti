@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, "l_f/home.html")
 
-def login(request):
+def login(request): 
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -49,6 +49,7 @@ def post_lost_item(request):
         email = request.POST.get("email")
         phone = request.POST.get("phone")
         image = request.FILES.get("image")
+        status = request.POST.get("status")  
 
         lost_item = LostItem(
             user=request.user,  
@@ -57,6 +58,7 @@ def post_lost_item(request):
             email=email,
             phone=phone,
             image=image,
+            status=status,  
         )
         lost_item.save()
 
@@ -64,8 +66,7 @@ def post_lost_item(request):
 
     return render(request, "l_f/post_item.html")
 
-@login_required(login_url="login")
-def find_item(request):
+def find_item(request):  
     items = LostItem.objects.all().order_by('-created_at')
     return render(request, "l_f/find_item.html", {"items": items})
 
@@ -80,7 +81,6 @@ def delete_item(request, item_id):
         messages.error(request, "You are not authorized to delete this item.")
 
     return redirect("find_item")
-
 
 def about_page(request):
     return render(request, "l_f/about_page.html")

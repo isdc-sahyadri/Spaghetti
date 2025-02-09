@@ -148,13 +148,25 @@ footer {
         gap: 10px;
     }
 }
+.logout-btn {
+    background-color: #ffcc00; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #e6b800;
+    transform: scale(1.1);
+}
 
 
     </style>
 </head>
 <body>
-
-   
     <nav>
         <a href="{% url 'home' %}"> <img src="{% static 'l_f/logo2.jpeg' %}" alt="Lost & Found" class="logo"></a>
         <ul class="navbar-nav flex-row">
@@ -162,10 +174,12 @@ footer {
             <li class="nav-item"><a class="nav-link text-white" href="{% url 'find_item' %}">Find Item</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="{% url 'post_item' %}">Post Item</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="{% url 'about_page' %}">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
+            {% endif %}
         </ul>
     </nav>
 
-   
     <div class="container">
         <h1 class="text-center mb-4">Find Lost Items</h1>
         <div class="row">
@@ -179,22 +193,37 @@ footer {
                                 <img src="https://via.placeholder.com/300" class="card-img-top" alt="No Image">
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title">{{ item.title }}</h5>
+                                <h5 class="card-title">
+                                    {{ item.title }}
+                                    <!-- Status Badge -->
+                                    {% if item.status == "lost" %}
+                                        <span class="badge bg-danger">Lost</span>
+                                    {% else %}
+                                        <span class="badge bg-success">Found</span>
+                                    {% endif %}
+                                </h5>
                                 <p class="card-text">{{ item.description }}</p>
                                 <p><strong>Contact:</strong> {{ item.name }} | {{ item.email }} | {{ item.phone }}</p>
-        
-                                <!-- View Details Button -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal{{ item.id }}">
                                     View Details
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal for Item Details -->
                     <div class="modal fade" id="detailsModal{{ item.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ item.id }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="detailsModalLabel{{ item.id }}">{{ item.title }}</h5>
+                                    <h5 class="modal-title" id="detailsModalLabel{{ item.id }}">
+                                        {{ item.title }}
+                                        {% if item.status == "lost" %}
+                                            <span class="badge bg-danger">Lost</span>
+                                        {% else %}
+                                            <span class="badge bg-success">Found</span>
+                                        {% endif %}
+                                    </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -213,13 +242,13 @@ footer {
                                     <a href="tel:{{ item.phone }}" class="btn btn-success">
                                         <i class="fas fa-phone-alt"></i> Call Contact
                                     </a>
-                    
+
                                     <!-- Delete Button -->
                                     <form action="{% url 'delete_item' item.id %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-                    
+
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -227,11 +256,11 @@ footer {
                     </div>                    
                 {% endfor %}
             {% else %}
-                <p class="no-items">No lost items found.</p>
+                <p class="no-items text-center">No lost items found.</p>
             {% endif %}
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     </div>
+    </div>
+
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 Lost and Found | All Rights Reserved</p>
@@ -242,14 +271,11 @@ footer {
             </div>
         </div>
     </footer>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-    
-
     </script>
-
 </body>
 </html>

@@ -1,13 +1,13 @@
 from django import forms
 from .models import LostItem
 from django.contrib.auth.models import User
-
-
+ 
 class LostItemForm(forms.ModelForm):
     class Meta:
         model = LostItem
-        fields = ['name', 'email', 'phone', 'title', 'description', 'image']
-        exclude = ['user']  
+        fields = ["title", "description", "email", "phone", "image", "status"]
+        exclude = ['user'] 
+
 
 class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
