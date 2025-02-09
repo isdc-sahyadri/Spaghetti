@@ -261,6 +261,52 @@ footer {
     transition: opacity 0.5s ease-out;
     opacity: 0.8;
 }
+.logout-btn {
+    background-color: #ffcc00; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #e6b800;
+    transform: scale(1.1);
+}
+
+.signup-btn {
+    background-color: #ff6f61; /* Reddish color */
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.signup-btn:hover {
+    background-color: #ff4c3b; 
+    transform: scale(1.1);
+}
+
+.login-btn {
+    background-color: #00bcd4;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #008c9e; 
+    transform: scale(1.1);
+}
+
+
     </style>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
@@ -273,6 +319,12 @@ footer {
             <li><a href="{% url 'find_item' %}">Find Item</a></li>
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'signup' %}" class="signup-btn">Sign Up</a></li>
+            <li><a href="{% url 'login' %}" class="login-btn">Log In</a></li>
+        {% endif %}
         </ul> 
         <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>

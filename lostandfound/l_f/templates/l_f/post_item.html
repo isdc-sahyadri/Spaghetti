@@ -216,6 +216,21 @@ footer {
         gap: 10px;
     }
 }
+.logout-btn {
+    background-color: #ffcc00; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #e6b800;
+    transform: scale(1.1);
+}
+
 
 
 
@@ -229,6 +244,9 @@ footer {
             <li><a href="{% url 'find_item' %}">Find Item</a></li>
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
+            {%endif%}
         </ul>
         <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>

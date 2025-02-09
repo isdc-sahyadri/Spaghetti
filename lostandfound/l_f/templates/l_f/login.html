@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{% static 'l_f/logo2.jpeg' %}">
     <title>Login - Lost and Found</title>
     <style>
-        * {
+        {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -48,7 +48,6 @@
             color: #00bcd4;
             transform: scale(1.1);
         }
-
         #particles-js {
             position: fixed;
             width: 100%;
@@ -131,6 +130,7 @@
             margin-bottom: 15px;
             font-size: 0.9rem;
         }
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         .signup-link {
             margin-top: 15px;
             color: white;
@@ -226,13 +226,11 @@ strong {
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
         </ul> 
-        
+        <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>
 
     <div class="signup-container">
         <h1>Login</h1>
-
-        <!-- Show error messages -->
         {% if messages %}
             <div class="error-messages">
                 {% for message in messages %}
@@ -255,6 +253,7 @@ strong {
            
             <button type="submit" class="submit-btn">Login</button>
             <a href="{% url 'signup' %}" class="signup-link">Don't have an account?  <strong>Sign-up here</strong></a>
+
         </form>
     </div>
 

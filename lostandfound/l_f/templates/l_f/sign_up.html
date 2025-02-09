@@ -244,7 +244,7 @@
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
         </ul> 
-       
+        <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>
     <div class="signup-container">
         <h1>Sign Up</h1>
@@ -267,6 +267,7 @@
                 <label for="confirm_password">Confirm Password</label>
             </div>
             <button type="submit" class="submit-btn">Sign Up</button>
+            <a href="{% url 'login' %}" class="login-link">Already signed up? Log in here</a>
             <a href="{% url 'login' %}" class="login-link">Already signed up? <strong>Login in here</strong></a>
         </form>
     </div>
