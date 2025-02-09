@@ -12,3 +12,15 @@ So gear up, bring your ideas to life, and show us what you’ve got! 🚀🔥
 
 
 Gdrive_link:https://drive.google.com/drive/folders/1wO4AyX1_aVfPVQl-nWfpThxG5zGHlfvU?usp=drive_link
+
+
+
+steps to open our_projec:
+1. clone our repository
+2. create a virtual environment in python ( python -m venev environment)
+3. activate the environment (environment\Scripts\activate)
+4. download the django and required modules( )
+4a. pip install django
+4b. pip install pillow
+5. go the the directory and run the project 
+pyhton manage.py runserver
