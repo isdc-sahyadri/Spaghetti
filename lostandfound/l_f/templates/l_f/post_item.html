@@ -231,25 +231,49 @@ footer {
     transform: scale(1.1);
 }
 
-
-
-
     </style>
 </head>
 <body>
     <nav>
-        <a href="{% url 'home' %}"> <img src="{% static 'l_f/logo2.jpeg' %}" alt="Lost & Found" class="logo"></a>
-        <ul id="nav-links">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'find_item' %}">Find Item</a></li>
-            <li><a href="{% url 'post_item' %}">Post Item</a></li>
-            <li><a href="{% url 'about_page' %}">About</a></li>
+        <a href="{% url 'home' %}"> 
+            <img src="{% static 'l_f/logo2.jpeg' %}" alt="Lost & Found" class="logo">
+        </a>
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'find_item' %}">Find Item</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'post_item' %}">Post Item</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'about_page' %}">About</a></li>
+    
             {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
-            {%endif%}
+            <li class="nav-item">
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#userInfoModal">
+                    {{ user.username }} <i class="fas fa-user"></i>
+                </button>
+            </li>
+            {% endif %}
         </ul>
-        <button class="menu-container" onclick="toggleMenu()">☰</button>
     </nav>
+
+    <div class="modal fade" id="userInfoModal" tabindex="-1" aria-labelledby="userInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userInfoModalLabel">User Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Username:</strong> {{ user.username }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Member Since:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <div class="form-container">
         <h1>Post a Lost Item</h1>
