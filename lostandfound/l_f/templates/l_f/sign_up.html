@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+=======
+    <link rel="icon" type="image/png" href="{% static 'l_f/logo2.jpeg' %}">
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     <title>Lost and Found</title>
     <style>
         * {
@@ -19,6 +23,10 @@
             text-align: center;
             position: relative;
             overflow-x: hidden;
+<<<<<<< HEAD
+=======
+            padding-top: 100px;
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
         }
         nav {
             display: flex;
@@ -220,6 +228,15 @@
         .login-link:hover {
             text-decoration: underline;
         }
+<<<<<<< HEAD
+=======
+        strong {
+            font-weight: 700;
+            color: tomato;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
 
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -236,7 +253,11 @@
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
         </ul> 
+<<<<<<< HEAD
         <button class="menu-container" onclick="toggleMenu()">☰</button>
+=======
+       
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     </nav>
     <div class="signup-container">
         <h1>Sign Up</h1>
@@ -260,6 +281,7 @@
             </div>
             <button type="submit" class="submit-btn">Sign Up</button>
             <a href="{% url 'login' %}" class="login-link">Already signed up? Log in here</a>
+            <a href="{% url 'login' %}" class="login-link">Already signed up? <strong>Login in here</strong></a>
         </form>
     </div>
 

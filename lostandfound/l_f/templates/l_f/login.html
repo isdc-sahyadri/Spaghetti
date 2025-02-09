@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+=======
+    <link rel="icon" type="image/png" href="{% static 'l_f/logo2.jpeg' %}">
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     <title>Login - Lost and Found</title>
     <style>
         * {
@@ -18,6 +22,7 @@
             text-align: center;
             position: relative;
             overflow-x: hidden;
+            padding-top: 100px;
         }
         nav {
             display: flex;
@@ -46,6 +51,10 @@
             color: #00bcd4;
             transform: scale(1.1);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
         #particles-js {
             position: fixed;
             width: 100%;
@@ -128,8 +137,93 @@
             margin-bottom: 15px;
             font-size: 0.9rem;
         }
+<<<<<<< HEAD
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+=======
+        .signup-link {
+            margin-top: 15px;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+        footer {
+    background: linear-gradient(180deg, rgba(20, 20, 20, 1), rgba(10, 10, 10, 1));
+    color: #e0e0e0;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0px -2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.footer-content p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-links a:hover {
+    color: #ff6f61;
+    transform: translateY(-2px);
+}
+
+.social-links a::before {
+    content: "➤";
+    font-size: 1rem;
+    color: #ff6f61;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover::before {
+    color: #00bcd4;
+}
+
+@media (max-width: 600px) {
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+strong {
+            font-weight: 700;
+            color: tomato;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
 </head>
 <body>
     <div id="particles-js"></div>
@@ -143,7 +237,11 @@
             <li><a href="{% url 'post_item' %}">Post Item</a></li>
             <li><a href="{% url 'about_page' %}">About</a></li>
         </ul> 
+<<<<<<< HEAD
         <button class="menu-container" onclick="toggleMenu()">☰</button>
+=======
+        
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     </nav>
 
     <div class="signup-container">
@@ -171,7 +269,11 @@
             </div>
            
             <button type="submit" class="submit-btn">Login</button>
+<<<<<<< HEAD
             <a href="{% url 'signup' %}" class="signup-link">Don't have an account? Sign up here</a>
+=======
+            <a href="{% url 'signup' %}" class="signup-link">Don't have an account?  <strong>Sign-up here</strong></a>
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
         </form>
     </div>
 
@@ -191,6 +293,19 @@
             var nav = document.getElementById('nav-links');
             nav.classList.toggle('active');
         }
+<<<<<<< HEAD
+=======
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80 },
+                size: { value: 3 },
+                move: { enable: true, speed: 1 },
+                opacity: { value: 0.5 },
+                shape: { type: "circle" },
+                line_linked: { enable: true, distance: 150 }
+            }
+        });
+>>>>>>> 57a1ddaad529151f9d4aa421b6d1c696839e92c3
     </script>
 </body>
 </html>
